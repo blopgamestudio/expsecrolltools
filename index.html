@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpSecretrolltools</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap');
+        
+        body {
+            background: url('https://www.toptal.com/designers/subtlepatterns/uploads/agedpaper.png');
+            font-family: 'Uncial Antiqua', cursive;
+            text-align: center;
+            padding: 40px;
+            color: #4A2500;
+        }
+        #secret-box {
+            background: rgba(255, 239, 186, 0.9);
+            border: 3px solid #4A2500;
+            padding: 20px;
+            width: 50%;
+            margin: auto;
+            display: none;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+        }
+        button {
+            background: #6B4226;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background: #8C5A3D;
+        }
+        .fade-in {
+            animation: fadeIn 2s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Révélation des Secrets Primordial et Anecdotique 📜</h1>
+            <h2>Secret Primordial :</h2>
+            <p><br>Impacte le passé du personnage ou sa condition dans l'univers d'Expenssion.
+            <br>Influence la construction narrative du personnage et son lien avec le monde.
+            <br>
+            <br>Peut inclure des éléments comme :
+            <br>Une malédiction ancestrale…
+            <br>Une identité cachée…
+            <br>Une dette envers un pouvoir obscur…</p>
+            <hr>
+
+            <h2>Secret Anecdotique :</h2>
+            <p><br>Impacte le présent ou le futur du personnage.
+            <br>Vise à enrichir le roleplay avec des détails amusants, intrigants ou dramatiques.
+            <br>
+            <br>Peut inclure des éléments comme :
+            <br>Une obsession étrange (ex. : collectionner des chapeaux rares)...
+            <br>Une prophétie personnelle étrange…
+            <br>Un objet porte-bonheur aux pouvoirs énigmatiques…
+            </p>
+
+    <button onclick="revealSecrets()">Révéler les Secrets</button>
+    <div id="secret-box" class="fade-in">
+        <h2>Secret Primordial :</h2>
+        <p id="primordial"></p>
+        <h2>Secret Anecdotique :</h2>
+        <p id="anecdotique"></p>
+    </div>
+    
+    <script>
+        const secretsPrimordiaux = [
+            "Vos cheveux n’ont jamais poussé.",
+            "Vous avez un tatouage de la milice de Xamegor.",
+            "Vous haïssez le déraris, il a causé la perte de l’un de vos proches.",
+            "Vous avez été servant.e de la famille royale de Quartam.",
+            "Vous n’avez jamais possédé de pièces d’or.",
+            "Vous êtes un.e lieutenant.e banni.e de la milice de Tamelin.",
+            "Vous avez été marié.e à la fille d’un bandit, il vous traque depuis.",
+            "Vous détestez Takin, votre frère vivant à Quartam, depuis une sombre histoire.",
+            "Vous êtes convaincu.e des bienfaits de la nécromancie et avez ressuscité votre chien.",
+            "Vous avez un tatouage sur la joue depuis 2 ans mais vous n’avez aucun souvenir des circonstances de sa création.",
+            "Vous possédez la fameuse recette du porc au miel, volée il y a 5 ans a Kéoral.",
+            "Vous avez deux enfants à l’autre bout du monde.",
+            "Vous avez tué le roi de Vinatatem en l’empoisonnant.",
+            "Vous détenez le record de Nelm de tartes à la pâquerette englouties.",
+            "Vous avez fait partie des chevaliers de L’Ordre Pourpre.",
+            "Vous avez été sous les ordres d’un fier pirate, Genir le chef corroyeur de Tolmesa.",
+            "Vous êtes de la famille royale de Minea.",
+            "Vous avez vu votre mort et l’avez refusée, vous êtes redevable à votre divinité.",
+            "Depuis l’enfance vous convoitez le déraris dans un sombre but.",
+            "Vous avez été incarcéré.e pour trafic de thoum.",
+            "Vous avez fui Norta après avoir fait exploser le château d’Ereden.",
+            "Vous avez touché un héritage qui n’était pas le votre.",
+            "Vous êtes censé.e écrire le dernier chapitre d’un roman de vos aventures, vos éditeurs.rices n’ont toujours rien vu. Iels sont résolu.e.s à vous enfermer dans un bureau de gré ou de force.",
+            "Vous vous êtes marié.e 6 fois au cours de votre vie.",
+            "Votre sœur a disparu, vous êtes 15 ans après encore à sa recherche.",
+            "On vous a cédé une cabane aux abords de Penatura.",
+            "Vous avez été clown à la cour de Nalgess.",
+            "Vous avez été incarcéré.e des années durant pour ivresse au banquet royal d’Artul.",
+            "Vous avez tué votre poisson rouge dans une expérience.",
+            "Vous avez été montreur.euse d’ours et acrobate.",
+            "Vous êtes le clone mécanique du roi de Carnal.",
+            "Jeune, vous avez créé une potion dont vous ignorez toujours l’effet.",
+            "Vous avez été téléporté.e quelques secondes par erreur à la Baie des Morts, depuis la Mort vous traque.",
+            "Votre mère était Alamis, responsable de la guilde Prometheus.",
+            "Votre amour d’enfance vous a offert une viola passier rouge, vous arborez fièrement mais en ignorez la provenance.",
+            "Vous avez une couleur de peau atypique pour votre population, vous avez été renié.e.",
+            "Vous faites un cauchemar récurrent : une vaste cave creusée dans la roche, un ours pétrifié, un artefact de pierre rouge.",
+            "Vous avez triché face au miroir de Sinolere, votre reflet veut votre mort.",
+            "Vous avez fait un pacte avec une autre divinité que la vôtre, vous devez conserver cette fiole, dont l’étiquette abîmée affiche “INV”.",
+            "Vous avez dû simuler l’assassinat de votre ami.e d’enfance, iel s’est enfui.e.",
+            "L’ensemble des Gobelins solaires vous déteste depuis votre trahison.",
+            "Vous êtes banni de Fortam pour exhibitionnisme lors de votre mariage.",
+            "Vous avez vos entrées à la Citadelle Mortuaire, une sombre académie de magie noire.",
+            "Vous êtes l’inventeur.rice de la marque de servitude, un tatouage magique symbolisant la soumission à une personne ou une organisation.",
+            "Vous étiez rédacteur.rice en chef du Shuné Magazine.",
+            "Vous êtes complice de l’incendie criminel de l’orphelinat d’Excala.",
+            "Vous devez racheter vos nombreux péchés, vous ne tuerez point.",
+            "Vous avez été lae meilleur.e joueur.euse de golf-ball de la dernière décennie.",
+            "Votre frère est un assassin connu de tous.",
+            "Vous êtes un chef d'œuvre de mécanique, votre père est le grand Maladius, marchand de tapis.",
+            "Votre carrière de boucher.ère-charcutier.ère de génie, vous vaut une réputation à travers tous les royaumes.",
+            "Vous êtes l’héritier.ère d’une encyclopédie biologique très détaillée, recherchée par tous les médecins depuis des décennies.",
+            "Vous êtes responsable de la fuite de Zetorkére, Décapiteur de Gobelin, lors de sa condamnation. La communauté des semi-hommes vous en veut.",
+            "Vous avez scellé un village troglodyte dans les montagnes de Pyra, pour ne pas que jaillisse un terrible ver brise-roche de quinze mètres de long.",
+            "Vous êtes un membre important de la cour de Vinatatem, en tant que préleveur.euse d'impôts, les villages sous votre juridiction ne vous apprécient pas forcément.",
+            "Vous êtes un ex-brasseur du Rhum de Polymesse, viré pour avoir voulu customiser la recette.",
+            "Vous avez passé des années à vagabonder dans les rues de Siras, arnaquant le premier venu pour enrichir une sombre compagnie de vauriens.",
+            "Vous avez été contraint.e de quitter votre village natal après une simple blague qui est allée trop loin.",
+            "Vous êtes un.e artisan.e de génie, et avez fabriqué à vous seul.e le nouveau palais du bourgmestre de Finarys.",
+            "Vous avez une très belle maison sur les hauteurs de Iacchus, grâce à un service rendu au mercenaire local.",
+            "Vous avez travaillé des années sur un projet secret, sur le point d’aboutir. Diverses personnalités cherchent à vous graisser la patte pour en obtenir la primeur.",
+            "Vous avez grandi dans une forêt enchantée où chaque arbre murmurait votre nom, mais vous ignorez pourquoi.",
+            "Une prophétie dit que vous apporterez la destruction à la Capital de vinatatem : Umere.",
+            "Vous êtes né.e sous un ciel rouge sang, un présage que votre village n’a jamais oublié.",
+            "Votre père était un célèbre général, mais sa trahison l’a conduit à l’exil, vous portant sa honte.",
+            "Vous avez appris à manier une arme interdite en secret auprès d’un mentor mystérieux.",
+            "Vous avez été sauvé.e par un dragon en échange d’une dette que vous n’avez pas encore payée.",
+            "Vous avez vu une étoile tomber du ciel, et depuis, un fragment brille sous votre peau.",
+            "Vous avez mangé le fruit d’un arbre mythique, altérant votre constitution à jamais.",
+            "Votre âme est liée à celle d’un esprit ancien qui murmure des secrets dans votre sommeil.",
+            "Vous êtes le dernier.e survivant.e d’un village détruit par une entité mystérieuse.",
+            "Vous avez participé à une rébellion ayant renversé un seigneur tyrannique.",
+            "Vous avez scellé un pacte avec un dieu mineur pour protéger votre famille, mais à quel prix ?",
+            "Vous avez grandi dans un cirque itinérant, apprenant à jongler avec le danger.",
+            "Vous êtes l'auteur.e d'un grimoire perdu, que des chasseurs de reliques cherchent désespérément.",
+            "Vous avez été adopté.e par une tribu étrange qui pratique une magie oubliée.",
+            "Vous avez failli être sacrifié.e lors d’un rituel, mais avez réussi à fuir avec un objet précieux.",
+            "Vous êtes né.e avec une étrange cicatrice en forme de rune, qui réagit à certains événements.",
+            "Vous avez été béni.e (ou maudit.e) par un dieu capricieux qui semble jouer avec votre destinée.",
+            "Vous avez récupéré une ancienne armure vivante, mais elle exige des sacrifices.",
+            "Vous avez une voix envoûtante qui a poussé des foules à vous suivre, parfois au péril de leur vie.",
+            "Vous avez découvert une clé ouvrant une porte cachée dans les ruines d’une cité ancienne.",
+            "Vous avez grandi en étant persuadé.e d’être un enfant ordinaire, mais un vieil ermite vous a révélé que vous ne l’êtes pas.",
+            "Vous êtes l’héritier.ère d’un petit royaume oublié, maintenant envahi par la jungle.",
+            "Vous avez volé une épée sacrée lors d’un rite initiatique, sans savoir qu’elle était maudite.",
+            "Vous possédez un pendentif dont le centre abrite une goutte de sang cristallisée, dont l’origine est inconnue.",
+            "Une ancienne guilde vous considère comme un traître depuis un coup monté contre vous.",
+            "Aria, la bibliothécaire impériale, veut votre tête depuis que vous avez accidentellement corné la page d’un de ses précieux ouvrages.",
+            "Vous avez sauvé un noble en détresse, mais son héritier vous considère comme une menace à éliminer.",
+            "Un mystérieux inconnu vous a confié un enfant, affirmant qu’il s’agit du descendant d’un roi oublié.",
+            "Vous êtes le dernier.e porteur.se d’un langage perdu, inscrit sur votre peau sous forme de tatouages mouvants.",
+            "Vous et votre meilleur.e ami.e avez pillé un sanctuaire draconique lors d'une soirée arrosée. Au matin vous étiez seul.e, vous avez depuis banni les spiritueux de votre vie.",
+            "Vous avez été maudit.e par un artefact ancien, vous obligeant à révéler la vérité sous certaines conditions.",
+            "Vous êtes né.e avec une moitié de corps, la magie d'un arbre chêne a été nécessaire pour vous sauver la vie. Vous êtes ainsi moitié arbre depuis tout.e petit.e.",
+            "Vous avez vendu votre ombre à un enchanteur pour obtenir une faveur, mais vous en ressentez les conséquences.",
+            "Vous avez découvert un œuf de dragon, et il est sur le point d’éclore.",
+            "Vous avez enterré un secret si terrible que même vous l’avez oublié.",
+            "Vous avez été choisi.e pour être l’hôte d’un esprit ancestral, mais il refuse de se manifester.",
+            "Vous avez survécu à un naufrage miraculeux, mais vous avez oublié tout ce qui précède cet événement.",
+            "Vous portez en vous une malédiction qui attire les catastrophes naturelles autour de vous.",
+            
+        ];
+        
+        const secretsAnecdotiques = [
+            "Vous rêvez de porter un chapeau bleu avec toutes les fleurs du continent.",
+            "Vous avez dans votre sac un lézard toxique mais amical.",
+            "Vous collectionnez les chaussettes orphelines.",
+            "Vous avez le mal de mer.",
+            "Vous avez très récemment perdu vos sous-vêtements.",
+            "Vous avez une nouvelle lubie, vous faites un herbier et collectionnez les feuilles.",
+            "Vous souhaitez créer une pommade anti-coup de soleil, vous cherchez des financements.",
+            "Vous êtes artiste-peintre, toute occasion est bonne à peindre !",
+            "Vous détestez marcher et avez tendance à compter vos pas.",
+            "Vous souhaitez porter uniquement des vêtements violets.",
+            "Vous avez une peur bleue du noir.",
+            "Faire un repas sans jus de sapin est une épreuve pour vous.",
+            "Vous êtes persuadé.e de lire l’avenir dans les fonds de chope de bière.",
+            "Vous portez une mèche de cheveux de couleur verte, elle n’est pas à vous.",
+            "Vous êtes en quête de vérité, qui de l'œuf ou de l'éléphant est arrivé en premier ?",
+            "Vous donnez des surnoms à tout le monde ?",
+            "Vous enchaînez les conquêtes sans lendemain.",
+            "Vous êtes lae plus grand.e fan du célèbre groupe “Les Valkyries du Matin”.",
+            "Vous êtes mannequin pour le Shuné Magazine.",
+            "Comme votre père le disait : “La rigueur c’est l’honneur”. Vous ne cessez de le répéter.",
+            "Vous oubliez constamment votre prénom.",
+            "Votre nouvel occupation, c’est le tricot !",
+            "Vous mordez chaque pièce de monnaie que vous gagnez pour vous assurer de leur véracité.",
+            "Vous souhaitez l’égalité entre les hommes et les insectes.",
+            "Vous tombez éperdument amoureux.se. de tous les érudit.e.s que vous rencontrez.",
+            "Vous vous préparez à survivre une fois le monde vidé d’eau potable.",
+            "Vous êtes le Grand Perdant de la finale de Cyanis au jeu “Le Singe et la Poule”.",
+            "Vous êtes à l’origine de la pétition “Golf-Ball meurtres et blessures” vous cherchez à récolter 100 signatures.",
+            "Vous vous entraînez souvent à faire le mort.",
+            "Vous militez pour la suppression de la magie.",
+            "Votre porte-bonheur est une bouteille renfermant Kiril, le sorcier maladroit.",
+            "Vous ne pouvez finir un repas sans vous brosser les dents.",
+            "Vous souhaitez créer l’horoscope des Six Astres.",
+            "Vous êtes persuadé.e d’être suivi.e.",
+            "Vous êtes persuadé.e de communiquer avec les lutins de jardin.",
+            "Vous avez créé le regroupement “Un cadeau pour un Hikir”.",
+            "Vous digérez mal le gluten.",
+            "Votre phrase d’accroche fétiche est 'Holà l’ami!'",
+            "Vous êtes lae fondateur.ice de la rubrique “Adopte un troll difforme pas comme les autres”, page 6 du Shuné Magazine.",
+            "Vous avez besoin qu’on vous lise une histoire pour bien dormir.",
+            "Vous complimentez chaque individu que vous rencontrez.",
+            "Vous êtes persuadé.e d’avoir réponse à tout.",
+            "Vous cherchez un.e associé.e pour votre projet de revente de bottes usagées.",
+            "Vous êtes un.e grand.e blagueur.euse, votre préféré est : “C’est un.e Zarga qui rentre dans une taverne aquatique et commande un verre vide.”",
+            "Vous souhaitez acquérir une broderie de la célèbre collection “Toile Mortelle”.",
+            "Faire le poirier vous aide à vous concentrer.",
+            "Vous confondez sans cesse les arbustes avec les flamants roses.",
+            "Vous avez pour ambition de goûter tous les champignons.",
+            "Vous avez besoin de changer de coupe de cheveux plusieurs fois par semaine.",
+            "Altalis vous a confié Nor, son ours en peluche. Un conseil : prenez-en grand soin !",
+            "La moindre pierre a une histoire, vous le savez et voulez toutes les entendre.",
+            "Vous rêvez de créer un nouveau type alliage qui mélange l’inerte et le vivant.",
+            "Votre rituel matinal peut surprendre, en effet la danse du lutin unijambiste n’est pas coutume chez tout le monde.",
+            "Vous êtes un.e grand.e fan des bains de minuit, qu’importe la température extérieure.",
+            "Vous êtes persuadé.e que les Elders ressurgiront de nulle part en reprenant le contrôle du monde.",
+            "Malgré votre âge, vous avez besoin d’une canne, n’importe quoi fera l’affaire.",
+            "Toutes vos missives ont une tournure inquiétante.",
+            "Vos tartes aux herbes sont délicieuses, il ne reste plus qu'à trouver des volontaires pour les partager avec vous.",
+            "Vous donnez des petits noms à toutes vos armes.",
+            "Vous participez à un programme d'aide morale pour un grand pénitencier et entretenez une relation épistolaire sérieuse avec un prisonnier inconnu.",
+            "Vous cherchez sans cesse des idées de décoration en prévision de votre hypothétique futur mariage.",
+            "Vous êtes très manuel.le quand il s’agit de cadeaux : bonhomme patate, collier de pâtes ou sculpture en papier mâché, rien ne vous arrête !",
+            "Vous avez des règles qui jusqu’ici on fait leurs preuves. Règle 17 : “Les coïncidences n’existent pas”, Règle 18 : “Toujours rester en groupe…”.",
+            "Vous parlez à l'oreille des sangliers.",
+            "Vous avez besoin de la reconnaissance de vos frères aînés, des génies du crime.",
+            "Viré.e du groupe de funkyrock “les Valkyries du Matin” pour une raison obscure, vous sabotez leurs concerts quand l’occasion se présente.",
+            "Vous maîtrisez un sort inutile mais indispensable : “Abracadaboum”, et Hop, un lutin danse sur l’épaule de votre interlocuteur.",
+            "Vous êtes persuadé.e d'être un.e architecte de génie, vous critiquez en bien ou mal chaque bâtiment.",
+            "Vous n'êtes décidément pas du matin.",
+            "Vous avez vingt-trois frères et sœurs, en tant que cadet de cette tribu, tout vous est dû, rien n’est jamais de votre faute.",
+            "Vous êtes certain.e que vos rêves prédisent l’avenir, mais seulement lorsqu’ils concernent des pigeons.",
+            "Vous avez pour projet de fabriquer un parfum à base de bave de grenouille.",
+            "Vous refusez de manger tout aliment qui n’est pas en forme de triangle.",
+            "Vous vous êtes fait tatouer une carte au trésor… que vous ne comprenez plus.",
+            "Vous êtes le.a co-fondateur.ice du club “Les Amateurs de Légumes Démodés”.",
+            "Vous vous êtes juré.e de trouver la légendaire épée en chocolat qui ne fond jamais.",
+            "Vous avez inventé une danse rituelle pour invoquer la chance avant chaque bataille.",
+            "Vous collectionnez les plumes, mais uniquement celles trouvées un mardi.",
+            "Vous vous adressez aux plantes en chantant des berceuses.",
+            "Vous êtes persuadé.e d’être la réincarnation d’un ancien roi ou reine, mais vous ignorez lequel/laquelle.",
+            "Vous avez toujours un gobelet en bois dans votre sac 'au cas où'.",
+            "Vous parlez couramment le langage secret des gobelins.",
+            "Vous évitez les miroirs, de peur qu’ils vous révèlent un autre vous.",
+            "Vous conservez des cailloux dans vos poches pour 'lancer des défis au destin'.",
+            "Vous vous êtes autoproclamé.e “Protecteur.trice des Tapis Volants”.",
+            "Vous refusez de porter des chaussures de la même couleur.",
+            "Vous avez adopté une ruche entière et vous connaissez chaque abeille par son nom.",
+            "Ce n’est pas que vous êtes paranoïaque, mais non, un bruit de branche qui craque au loin ne veut pas dire que la garde royale de Vinatatem vous fonce dessus.",
+            "Vous collectionnez les bouteilles vides, persuadé.e qu’elles “emprisonnent les souvenirs des autres”.",
+            "Vous êtes en quête du légendaire “sablier qui arrête le temps”… mais sans trop vous presser.",
+            "Vous êtes convaincu.e que les étoiles forment un langage codé qui vous est destiné.",
+            "Vous ne vous lavez pas, persuadé que les produits hygiéniques font partie d’un grand complot.",
+            "Vous fabriquez des bijoux à partir de morceaux de métal rouillés trouvés dans la nature.",
+            "Vous avez pour ambition de créer la plus grande bibliothèque ambulante qui existe.",
+            "Vous refusez de prendre des bains dans des rivières où vivent des poissons “par respect” pour eux.",
+            "Vous croyez dur comme fer que les fourmis vous considèrent comme leur roi ou reine.",
+            "Vous vous entraînez à marcher sur les mains pour impressionner les gardes.",
+            "Vous êtes persuadé.e que chaque grotte renferme une civilisation oubliée.",
+            "Vous voulez répertorier toutes les chanson de l’artiste itinérante “Alba”.",
+            "Vous rêvez d’écrire une saga épique racontant l’histoire d’un radis courageux."
+            
+        ];
+
+        function revealSecrets() {
+            let primordial = secretsPrimordiaux[Math.floor(Math.random() * secretsPrimordiaux.length)];
+            let anecdotique = secretsAnecdotiques[Math.floor(Math.random() * secretsAnecdotiques.length)];
+            
+            document.getElementById("primordial").innerText = primordial;
+            document.getElementById("anecdotique").innerText = anecdotique;
+            document.getElementById("secret-box").style.display = "block";
+        }
+    </script>
+</body>
+</html>
